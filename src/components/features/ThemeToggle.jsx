@@ -1,35 +1,16 @@
-import { 
-  Moon, 
-  Sun 
-} from 'lucide-react';
-import React, { 
-  useLayoutEffect, 
-  useState 
-} from 'react'
+import { Moon, Sun } from 'lucide-react';
+import React, { useLayoutEffect, useState } from 'react';
 import { cn } from '@/lib/utils.js';
 
-/**
- * ThemeToggle Component
- * * A floating control that toggles between 'light' and 'dark' modes.
- * Persists preference to localStorage and respects system settings initially.
- * * Styles: Uses 'glass-panel' utility for a frosted space-glass effect.
- */
-function ThemeToggle() {
-
-  // 1. Initialize State: Check localStorage -> System Preference -> Default to Light
+function ThemeToggle({ className }) {
   const [isDarkMode, setIsDarkMode] = useState(() => {
-
-    if (typeof window === 'undefined') return false; // SSR Safety
-
+    if (typeof window === 'undefined') return false;
     const storedTheme = localStorage.getItem('theme');
     if (storedTheme === 'dark') return true;
     if (storedTheme === 'light') return false;
-
-    // Fallback to System Preference
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
 
-  // 2. Synchronization Effect: Updates the DOM and LocalStorage whenever state changes
   useLayoutEffect(() => {
     const root = document.documentElement;
     if (isDarkMode) {
@@ -41,7 +22,6 @@ function ThemeToggle() {
     }
   }, [isDarkMode]);
 
-  // 3. Toggle Handler
   const toggleTheme = () => setIsDarkMode((prev) => !prev);
 
   return (
@@ -49,33 +29,27 @@ function ThemeToggle() {
       onClick={toggleTheme}
       aria-label="Toggle Dark Mode"
       className={cn(
-        // Layout & Positioning
-        "fixed top-6 right-6 z-50 p-3 rounded-full",
-        
-        // Visuals (Space Glass Effect)
-        "bg-background/30 backdrop-blur-md border border-white/10 shadow-lg",
-        
-        // Interactions
-        "hover:bg-background/50 hover:scale-110 active:scale-95",
-        "transition-all duration-300 ease-out cursor-pointer",
-        
-        // Focus States
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+        // Base
+        "relative p-2.5 rounded-full transition-all duration-300 ease-out cursor-pointer overflow-hidden",
+        // Visuals (Matches new glass-card utility)
+        "bg-background/80 backdrop-blur-md border border-border shadow-sm",
+        // Hover
+        "hover:bg-secondary hover:border-primary/20",
+        // Focus
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20",
+        className
       )}
     >
-      <div className="relative w-6 h-6 overflow-hidden">
-        {/* Sun Icon (Visible in Light Mode) */}
+      <div className="relative w-5 h-5">
         <Sun 
           className={cn(
-            "absolute inset-0 w-full h-full text-yellow-500 transition-all duration-500",
+            "absolute inset-0 w-full h-full text-amber-500 transition-all duration-500 cubic-bezier(0.16, 1, 0.3, 1)", // Snappy easing
             isDarkMode ? "rotate-90 opacity-0 scale-50" : "rotate-0 opacity-100 scale-100"
           )} 
         />
-        
-        {/* Moon Icon (Visible in Dark Mode) */}
         <Moon 
           className={cn(
-            "absolute inset-0 w-full h-full text-blue-400 transition-all duration-500",
+            "absolute inset-0 w-full h-full text-primary transition-all duration-500 cubic-bezier(0.16, 1, 0.3, 1)",
             isDarkMode ? "rotate-0 opacity-100 scale-100" : "-rotate-90 opacity-0 scale-50"
           )} 
         />
