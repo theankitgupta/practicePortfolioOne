@@ -160,7 +160,7 @@ function ProjectSection() {
                 key={project.id}
                 onClick={() => handleCardClick(index)}
                 className={cn(
-                  "absolute top-0 w-[300px] sm:w-[380px] md:w-[450px] aspect-[4/5] md:aspect-[4/4.5] rounded-2xl border border-border/60 bg-card/90 backdrop-blur-xl shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] flex flex-col overflow-hidden preserve-3d cursor-pointer",
+                  "absolute top-0 w-[300px] sm:w-[380px] md:w-[450px] aspect-4/5 md:aspect-[4/4.5] rounded-2xl border border-border/60 bg-card/90 backdrop-blur-xl shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] flex flex-col overflow-hidden preserve-3d cursor-pointer",
                   index !== activeIndex && "hover:bg-secondary/40" 
                 )}
                 style={style}
@@ -177,12 +177,12 @@ function ProjectSection() {
                     "absolute inset-0 bg-black/40 flex items-center justify-center gap-4 backdrop-blur-[2px] transition-opacity duration-300",
                     index === activeIndex ? "opacity-0 group-hover:opacity-100" : "opacity-0 pointer-events-none"
                   )}>
-                     <a href={project.demoUrl} target="_blank" rel="noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-primary hover:text-white backdrop-blur-md transition-colors border border-white/20">
+                    <a href={project.demoUrl} target="_blank" rel="noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-primary hover:text-white backdrop-blur-md transition-colors border border-white/20">
                         <ExternalLink className="w-5 h-5" />
-                     </a>
-                     <a href={project.gitHubUrl} target="_blank" rel="noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-primary hover:text-white backdrop-blur-md transition-colors border border-white/20">
+                    </a>
+                    <a href={project.gitHubUrl} target="_blank" rel="noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-primary hover:text-white backdrop-blur-md transition-colors border border-white/20">
                         <Github className="w-5 h-5" />
-                     </a>
+                    </a>
                   </div>
                 </div>
 
@@ -199,7 +199,7 @@ function ProjectSection() {
                   <h3 className="text-xl font-bold text-foreground mb-2 flex items-center gap-2">
                     {project.title}
                     {index === activeIndex && (
-                       <Zap className="w-4 h-4 text-yellow-500 fill-yellow-500 animate-pulse-subtle" />
+                      <Zap className="w-4 h-4 text-yellow-500 fill-yellow-500 animate-pulse-subtle" />
                     )}
                   </h3>
                   
