@@ -300,3 +300,16 @@
   @apply w-full bg-secondary/20 border border-border/40 rounded-lg px-4 py-3 outline-none text-foreground placeholder:text-muted-foreground/50 transition-all duration-300;
   @apply focus:bg-background/50 focus:border-primary/50 focus:ring-1 focus:ring-primary/20;
 }
+
+@utility perspective-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
+
+@utility backface-hidden {
+  backface-visibility: hidden;
+}

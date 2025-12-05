@@ -37,7 +37,7 @@ function Home() {
         
         {/* Floating Theme Toggle (Desktop) */}
         {/* Adjusted top position and added hover transition */}
-        <ThemeToggle className="fixed top-6 right-8 z-50 hidden md:flex items-center justify-center glass-card p-2 hover:scale-110 hover:border-primary/50 transition-all duration-300 shadow-lg" />
+        <ThemeToggle className="fixed top-3 right-8 z-50 hidden md:flex items-center justify-center glass-card p-2 hover:scale-110 hover:border-primary/50 transition-all duration-300 shadow-lg" />
 
         {/* Main Content Sections */}
         <main className="flex-1 flex flex-col">
